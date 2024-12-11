@@ -1,0 +1,39 @@
+.themes-container {
+  display: flex; /* Используйте flexbox для позиционирования элементов */
+  flex-direction: column; /* Вертикальное размещение элементов */
+  padding: 20px; /* Отступы вокруг контейнера */
+  margin: 20px; /* Отступ для контейнера */
+}
+
+.themespage-title {
+  border: 2px solid #333; /* Цвет и толщина рамки */
+  background-color: #4caf50;
+  padding: 10px; /* Отступ внутри рамки */
+  border-radius: 5px; /* Закругление углов рамки (по желанию) */
+  margin-bottom: 20px; /* Отступ снизу для разделения с содержимым */
+  color: white; /* Цвет текста заголовка */
+}
+
+.theme-item {
+  background-color: #4caf50;
+  border: 1px solid #ddd;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.theme-item:hover {
+  background-color: #45a049; /* Цвет фона при наведении */
+}
+
+.theme-edit,
+.theme-view {
+  display: flex; /* Используем Flexbox для редактирования и просмотра */
+  align-items: center; /* Центрируем элементы по вертикали */
+}
+
+button {
+  margin-left: 10px; /* Добавляем отступ между текстом и кнопкой */
+}

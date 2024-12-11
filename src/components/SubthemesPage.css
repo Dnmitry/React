@@ -1,0 +1,50 @@
+.subthemes-container {
+  display: flex; /* Используйте flexbox для вёрстки элементов */
+  flex-direction: column; /* Вертикальное размещение элементов */
+  padding: 20px; /* Отступы вокруг контейнера */
+}
+
+.subpage-title {
+  display: flex; /* Используем flexbox для выравнивания элементов заголовка */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  border: 2px solid #333; /* Цвет и толщина рамки */
+  background-color: #4caf50; /* Цвет фона заголовка */
+  padding: 10px; /* Отступ внутри рамки */
+  border-radius: 5px; /* Закругление углов рамки (по желанию) */
+  margin-bottom: 20px; /* Отступ снизу для разделения с содержимым */
+  color: white; /* Цвет текста заголовка */
+}
+
+.back-button {
+  display: flex; /* Используем flexbox для кнопки */
+  align-items: center; /* Вертикальное выравнивание по центру */
+  background: none; /* Убираем фоновый цвет */
+  border: none; /* Убираем рамку */
+  cursor: pointer; /* Указываем, что элемент кликабельный */
+  color: white; /* Цвет текста кнопки */
+  margin-right: 10px; /* Отступ справа от кнопки */
+}
+
+.back-icon {
+  width: 20px; /* Ширина иконки */
+  height: 20px; /* Высота иконки */
+  margin-right: 5px; /* Отступ справа от иконки */
+}
+
+.subthemes-list {
+  margin-top: 20px; /* Отступ сверху для разделения с заголовком */
+}
+
+.subtheme-item {
+  background-color: #4caf50; /* Цвет фона для элементов списка */
+  border: 1px solid #ddd; /* Цвет и толщина рамки */
+  color: white; /* Цвет текста элементов списка */
+  border-radius: 4px; /* Закругление углов элементов списка */
+  padding: 10px; /* Отступ внутри элементов списка */
+  transition: background-color 0.3s; /* Плавный переход цвета фона */
+  margin-bottom: 10px; /* Отступ снизу между элементами списка */
+}
+
+.subtheme-item:hover {
+  background-color: #45a049; /* Цвет фона при наведении на элемент списка */
+}

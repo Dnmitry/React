@@ -1,0 +1,61 @@
+{
+  "themes": [
+    { "id": 1, "title": "Оружие", "ord": 1 },
+    { "id": 2, "title": "Питомцы", "ord": 2 },
+    { "id": 3, "title": "Перевоплощения", "ord": 3 },
+    { "id": 4, "title": "Задания", "ord": 4 }
+  ],
+  "subthemes": [
+    { "id": 1, "themeId": 1, "title": "Ближний бой", "ord": 1 },
+    { "id": 2, "themeId": 1, "title": "Дальний бой", "ord": 2 },
+
+    { "id": 3, "themeId": 2, "title": "Танк", "ord": 1 },
+    { "id": 4, "themeId": 2, "title": "Маг", "ord": 2 },
+    { "id": 5, "themeId": 2, "title": "рейнеджер", "ord": 3 },
+
+    { "id": 6, "themeId": 3, "title": "Перевоплощения", "ord": 1 },
+
+    { "id": 7, "themeId": 4, "title": "Эпические задания", "ord": 1 },
+    { "id": 8, "themeId": 4, "title": "Ежедневные задания", "ord": 2 },
+    { "id": 9, "themeId": 4, "title": "Простые задания", "ord": 3 }
+  ],
+  "contents": [
+    { "id": 1, "subthemeId": 1, "title": "Адские катары", "ord": 1 },
+    { "id": 2, "subthemeId": 1, "title": "Адский клинок", "ord": 2 },
+    { "id": 3, "subthemeId": 1, "title": "Алебарда хранителя", "ord": 3 },
+    { "id": 4, "subthemeId": 1, "title": "Англахель", "ord": 4 },
+    { "id": 5, "subthemeId": 1, "title": "Двуручный меч", "ord": 5 },
+    { "id": 6, "subthemeId": 1, "title": "Джамадхары убийцы", "ord": 6 },
+    { "id": 7, "subthemeId": 1, "title": "Железная алебарда", "ord": 7 },
+
+    { "id": 8, "subthemeId": 2, "title": "Длинный лук ворона", "ord": 1 },
+    { "id": 9, "subthemeId": 2, "title": "Композитный лук", "ord": 2 },
+    { "id": 10, "subthemeId": 2, "title": "Лук кочевника", "ord": 3 },
+    { "id": 11, "subthemeId": 2, "title": "Магмовый орб Метеоса", "ord": 4 },
+    { "id": 12, "subthemeId": 2, "title": "Орб воды", "ord": 5 },
+    { "id": 13, "subthemeId": 2, "title": "Орб призывателя", "ord": 6 },
+
+    { "id": 14, "subthemeId": 3, "title": "Ближний бой", "ord": 1 },
+    { "id": 15, "subthemeId": 3, "title": "Защита", "ord": 2 },
+    { "id": 16, "subthemeId": 3, "title": "Дроп", "ord": 3 },
+
+    { "id": 17, "subthemeId": 5, "title": "Дальний бой", "ord": 1 },
+    { "id": 18, "subthemeId": 5, "title": "Защита для дальего боя", "ord": 2 },
+    { "id": 19, "subthemeId": 5, "title": "Дроп", "ord": 3 },
+
+    { "id": 20, "subthemeId": 4, "title": "Ближний бой", "ord": 1 },
+    { "id": 21, "subthemeId": 4, "title": "Защита", "ord": 2 },
+    { "id": 22, "subthemeId": 4, "title": "Дроп", "ord": 3 },
+
+    { "id": 23, "subthemeId": 6, "title": "Обычные", "ord": 1 },
+    { "id": 24, "subthemeId": 6, "title": "Редкие", "ord": 2 },
+    { "id": 25, "subthemeId": 6, "title": "Эпические", "ord": 3 },
+    { "id": 26, "subthemeId": 6, "title": "Легендарные", "ord": 4 },
+
+    { "id": 27, "subthemeId": 7, "title": "Колфорт", "ord": 1 },
+    { "id": 28, "subthemeId": 7, "title": "Небесный остров Эльтер", "ord": 2 },
+
+    { "id": 27, "subthemeId": 8, "title": "Храм Метеоса", "ord": 1 },
+    { "id": 28, "subthemeId": 8, "title": "Остров Акра", "ord": 2 }
+  ]
+}
