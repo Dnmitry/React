@@ -1,39 +1,93 @@
+/* ThemesPage.css */
+
 .themes-container {
-  display: flex; /* Используйте flexbox для позиционирования элементов */
-  flex-direction: column; /* Вертикальное размещение элементов */
-  padding: 20px; /* Отступы вокруг контейнера */
-  margin: 20px; /* Отступ для контейнера */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.themespage-title {
-  border: 2px solid #333; /* Цвет и толщина рамки */
+.subpage-title {
+  display: flex;
+  align-items: center;
+  border: 2px solid #333;
   background-color: #4caf50;
-  padding: 10px; /* Отступ внутри рамки */
-  border-radius: 5px; /* Закругление углов рамки (по желанию) */
-  margin-bottom: 20px; /* Отступ снизу для разделения с содержимым */
-  color: white; /* Цвет текста заголовка */
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  color: black;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin-right: 10px;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.themes-list {
+  margin-top: 20px;
 }
 
 .theme-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #4caf50;
   border: 1px solid #ddd;
   color: white;
   border-radius: 4px;
   padding: 10px;
-  transition: background-color 0.3s;
   margin-bottom: 10px;
+  transition: background-color 0.3s;
 }
 
 .theme-item:hover {
-  background-color: #45a049; /* Цвет фона при наведении */
+  background-color: #45a049;
 }
 
-.theme-edit,
-.theme-view {
-  display: flex; /* Используем Flexbox для редактирования и просмотра */
-  align-items: center; /* Центрируем элементы по вертикали */
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-button {
-  margin-left: 10px; /* Добавляем отступ между текстом и кнопкой */
+.delete-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.add-theme-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.add-theme-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 70%;
+}
+
+.add-theme-button {
+  z-index: 1;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.add-theme-button:hover {
+  background-color: #45a049;
 }

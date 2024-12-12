@@ -8,6 +8,8 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("themes");
   const [selectedThemeId, setSelectedThemeId] = useState(null);
   const [selectedSubthemeId, setSelectedSubthemeId] = useState(null);
+  const [themes, setThemes] = useState(data.themes);
+  const [subthemes, setSubthemes] = useState(data.subthemes);
 
   const handleThemeSelect = (themeId) => {
     setSelectedThemeId(themeId);
@@ -29,24 +31,42 @@ const App = () => {
     setSelectedSubthemeId(null); // Сбрасываем выбранную подтему
   };
 
+  const handleAddTheme = (newTheme) => {
+    setThemes((prevThemes) => [...prevThemes, newTheme]);
+  };
+
+  const handleAddSubtheme = (newSubtheme) => {
+    const newSubthemeWithThemeId = { ...newSubtheme, themeId: selectedThemeId };
+    setSubthemes((prevSubthemes) => [...prevSubthemes, newSubthemeWithThemeId]);
+  };
+
+  const handleDeleteSubtheme = (id) => {
+    const newSubthemes = subthemes.filter((subtheme) => subtheme.id !== id);
+    setSubthemes(newSubthemes);
+  };
+
   return (
     <div>
       {currentPage === "themes" && (
-        <ThemesPage themes={data.themes} onSelect={handleThemeSelect} />
+        <ThemesPage
+          themes={themes}
+          onSelect={handleThemeSelect}
+          onAddTheme={handleAddTheme}
+        />
       )}
       {currentPage === "subthemes" && (
         <SubthemesPage
-          subthemes={data.subthemes.filter(
-            (sub) => sub.themeId === selectedThemeId
-          )}
+          subthemes={subthemes.filter((sub) => sub.themeId === selectedThemeId)}
           onSelect={handleSubthemeSelect}
-          onBack={handleBackToThemes} // Передаем функцию для возврата
+          onBack={handleBackToThemes}
+          onAddSubtheme={handleAddSubtheme}
+          onDeleteSubtheme={handleDeleteSubtheme} // Передача функции
         />
       )}
       {currentPage === "content" && (
         <ContentPage
           subthemeId={selectedSubthemeId}
-          onBack={handleBackToSubthemes} // Передаем функцию для возврата на подтемы
+          onBack={handleBackToSubthemes}
         />
       )}
     </div>

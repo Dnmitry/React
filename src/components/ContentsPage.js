@@ -1,16 +1,36 @@
 import React, { useState } from "react";
-import "./ContentsPage.css"; // Импортируйте CSS файл
-import data from "../data.json"; // Импорт данных из data.json
-import backIcon from "../images/back-icon.png"; // Путь к изображению иконки "Назад"
+import "./ContentsPage.css"; // Import the CSS file
+import data from "../data.json"; // Import data from data.json
+import backIcon from "../images/back-icon.png";
+import deleteIcon from "../images/delete-icon.png"; // Path to the delete icon image
 
 const ContentPage = ({ subthemeId, onBack }) => {
-  const contents = data.contents.filter(
+  const initialContents = data.contents.filter(
     (item) => item.subthemeId === subthemeId
   );
-  const [selectedContent, setSelectedContent] = useState(null); // Хранит выбранное содержание
+  const [contents, setContents] = useState(initialContents); // Holds the content
+  const [selectedContent, setSelectedContent] = useState(null); // Holds the selected content
+  const [newContent, setNewContent] = useState(""); // Holds the new content
 
   const handleContentSelect = (content) => {
-    setSelectedContent(content); // Устанавливаем выбранное содержимое
+    setSelectedContent(content); // Set the selected content
+  };
+
+  const handleAddNewContent = () => {
+    if (newContent.trim() === "") return; // Prevent adding empty content
+    const newContentItem = {
+      id: Date.now(), // Generate a unique ID for the new content
+      title: newContent,
+      subthemeId: subthemeId,
+    };
+    setContents([...contents, newContentItem]);
+    setNewContent(""); // Clear the input field
+  };
+
+  const handleDeleteContent = (contentToDelete) => {
+    setContents(
+      contents.filter((content) => content.id !== contentToDelete.id)
+    );
   };
 
   return (
@@ -22,20 +42,38 @@ const ContentPage = ({ subthemeId, onBack }) => {
         Виды
       </h2>
       <div className="contents-list">
-        {Array.isArray(contents) && contents.length > 0 ? (
+        {contents.length === 0 ? (
+          <p>Нет содержания для отображения.</p>
+        ) : (
           contents.map((content) => (
-            <div
-              key={content.id}
-              className="content-item" // Назначьте стиль ячейки
-              onClick={() => handleContentSelect(content)} // Устанавливаем выбранное содержание
-              style={{ cursor: "pointer" }} // Указатель на элемент
-            >
-              {content.title} {/* Название части содержания */}
+            <div key={content.id} className="content-item">
+              <span
+                onClick={() => handleContentSelect(content)}
+                className="content-title"
+              >
+                {content.title}
+              </span>
+              <button
+                className="delete-button"
+                onClick={() => handleDeleteContent(content)}
+              >
+                <img src={deleteIcon} alt="Удалить" className="delete-icon" />
+              </button>
             </div>
           ))
-        ) : (
-          <p>Нет доступных частей для данной подтемы.</p> // Сообщение, если нет доступных частей
         )}
+      </div>
+      <div className="add-content-container">
+        <input
+          type="text"
+          value={newContent}
+          onChange={(e) => setNewContent(e.target.value)}
+          placeholder="Добавить новое содержание"
+          className="new-content-input"
+        />
+        <button onClick={handleAddNewContent} className="add-button">
+          Добавить
+        </button>
       </div>
     </div>
   );

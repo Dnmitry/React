@@ -12,7 +12,7 @@
   padding: 10px; /* Отступ внутри рамки */
   border-radius: 5px; /* Закругление углов рамки (по желанию) */
   margin-bottom: 20px; /* Отступ снизу для разделения с содержимым */
-  color: white; /* Цвет текста заголовка */
+  color: black; /* Цвет текста заголовка */
 }
 
 .back-button {
@@ -36,15 +36,56 @@
 }
 
 .subtheme-item {
-  background-color: #4caf50; /* Цвет фона для элементов списка */
-  border: 1px solid #ddd; /* Цвет и толщина рамки */
-  color: white; /* Цвет текста элементов списка */
-  border-radius: 4px; /* Закругление углов элементов списка */
-  padding: 10px; /* Отступ внутри элементов списка */
-  transition: background-color 0.3s; /* Плавный переход цвета фона */
-  margin-bottom: 10px; /* Отступ снизу между элементами списка */
+  display: flex;
+  justify-content: space-between;
+  background-color: #4caf50;
+  border: 1px solid #ddd;
+  color: white;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
 }
 
 .subtheme-item:hover {
   background-color: #45a049; /* Цвет фона при наведении на элемент списка */
+}
+
+.add-subtheme-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.add-subtheme-container input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 70%;
+}
+
+.add-subtheme-container button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.add-subtheme-container button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
 }

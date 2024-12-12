@@ -1,47 +1,100 @@
+/* ContentsPage.css */
+
 .contents-container {
-  display: flex; /* Используйте flexbox для вёрстки элементов */
-  flex-direction: column; /* Вертикальное размещение элементов */
-  padding: 20px; /* Отступы вокруг контейнера */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .contentpage-title {
-  display: flex; /* Используем flexbox для выравнивания элементов заголовка */
-  align-items: center; /* Вертикальное выравнивание по центру */
-  border: 2px solid #333; /* Цвет и толщина рамки */
-  background-color: #4caf50; /* Цвет фона заголовка */
-  padding: 10px; /* Отступ внутри рамки */
-  border-radius: 5px; /* Закругление углов рамки (по желанию) */
-  margin-bottom: 20px; /* Отступ снизу для разделения с содержимым */
-  color: white; /* Цвет текста заголовка */
+  display: flex;
+  align-items: center;
+  background-color: #4caf50;
+  border: 2px solid #333;
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.contentpage-title span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .back-button {
-  background: none; /* Убираем фон кнопки */
-  border: none; /* Убираем рамку кнопки */
-  cursor: pointer; /* Указатель на элемент */
-  margin-right: 10px; /* Отступ справа для разделения кнопки и заголовка */
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .back-icon {
-  width: 20px; /* Ширина иконки */
-  height: 20px; /* Высота иконки */
+  width: 20px;
+  height: 20px;
 }
 
 .contents-list {
-  display: flex;
-  flex-direction: column; /* Вертикальное расположение элементов */
+  margin-top: 20px;
 }
 
 .content-item {
-  background-color: #4caf50; /* Цвет фона */
-  border: 1px solid #ddd; /* Рамка */
-  color: white; /* Цвет текста */
-  border-radius: 4px; /* Закругление углов */
-  padding: 10px; /* Отступы внутри элемента */
-  margin-bottom: 10px; /* Отступ снизу между элементами */
-  transition: background-color 0.3s; /* Плавный переход цвета */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4caf50;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  color: white;
 }
 
 .content-item:hover {
-  background-color: #45a049; /* Цвет фона при наведении */
+  background-color: #45a049;
+}
+
+.content-title {
+  cursor: pointer;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.add-content-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.new-content-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 70%;
+}
+
+.add-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
 }
