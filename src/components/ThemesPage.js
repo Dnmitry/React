@@ -25,12 +25,7 @@ const ThemesPage = ({
 
   return (
     <div className="themes-container">
-      <h2 className="subpage-title">
-        <button className="back-button" onClick={onBack}>
-          <img src={backIcon} alt="Назад" className="back-icon" />
-        </button>
-        Темы
-      </h2>
+      <h2 className="subpage-title">Темы</h2>
       <div className="themes-list">
         {themes.length === 0 ? (
           <p>Нет тем для отображения.</p>
