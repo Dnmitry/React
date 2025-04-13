@@ -1,36 +1,37 @@
-import React, { useState } from "react";
-import "./ContentsPage.css"; // Import the CSS file
-import data from "../data.json"; // Import data from data.json
+// components/ContentsPage.js
+import React, { useState, useEffect } from "react";
+import "./ContentsPage.css";
+import data from "../data.json";
 import backIcon from "../images/back-icon.png";
-import deleteIcon from "../images/delete-icon.png"; // Path to the delete icon image
+import deleteIcon from "../images/delete-icon.png";
 
-const ContentPage = ({ subthemeId, onBack }) => {
+const ContentPage = ({ subthemeId, onBack, onAddContent, onDeleteContent }) => {
   const initialContents = data.contents.filter(
     (item) => item.subthemeId === subthemeId
   );
-  const [contents, setContents] = useState(initialContents); // Holds the content
-  const [selectedContent, setSelectedContent] = useState(null); // Holds the selected content
-  const [newContent, setNewContent] = useState(""); // Holds the new content
+  const [contents, setContents] = useState(initialContents);
 
-  const handleContentSelect = (content) => {
-    setSelectedContent(content); // Set the selected content
-  };
+  useEffect(() => {
+    const storedContents = localStorage.getItem(`contents-${subthemeId}`);
+    if (storedContents) {
+      setContents(JSON.parse(storedContents));
+    }
+  }, [subthemeId]);
 
-  const handleAddNewContent = () => {
-    if (newContent.trim() === "") return; // Prevent adding empty content
-    const newContentItem = {
-      id: Date.now(), // Generate a unique ID for the new content
+  useEffect(() => {
+    localStorage.setItem(`contents-${subthemeId}`, JSON.stringify(contents));
+  }, [contents, subthemeId]);
+
+  const handleAddNewContent = (newContent) => {
+    onAddContent({
+      id: Date.now(),
       title: newContent,
       subthemeId: subthemeId,
-    };
-    setContents([...contents, newContentItem]);
-    setNewContent(""); // Clear the input field
+    });
   };
 
   const handleDeleteContent = (contentToDelete) => {
-    setContents(
-      contents.filter((content) => content.id !== contentToDelete.id)
-    );
+    onDeleteContent(contentToDelete.id);
   };
 
   return (
@@ -47,12 +48,7 @@ const ContentPage = ({ subthemeId, onBack }) => {
         ) : (
           contents.map((content) => (
             <div key={content.id} className="content-item">
-              <span
-                onClick={() => handleContentSelect(content)}
-                className="content-title"
-              >
-                {content.title}
-              </span>
+              <span className="content-title">{content.title}</span>
               <button
                 className="delete-button"
                 onClick={() => handleDeleteContent(content)}
@@ -66,12 +62,12 @@ const ContentPage = ({ subthemeId, onBack }) => {
       <div className="add-content-container">
         <input
           type="text"
-          value={newContent}
-          onChange={(e) => setNewContent(e.target.value)}
+          value=""
+          onChange={(e) => handleAddNewContent(e.target.value)}
           placeholder="Добавить новое содержание"
           className="new-content-input"
         />
-        <button onClick={handleAddNewContent} className="add-button">
+        <button onClick={() => handleAddNewContent("")} className="add-button">
           Добавить
         </button>
       </div>

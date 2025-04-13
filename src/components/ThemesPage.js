@@ -1,3 +1,4 @@
+// ThemesPage.js
 import React, { useState } from "react";
 import "./ThemesPage.css"; // Импорт стилей
 import backIcon from "../images/back-icon.png"; // Путь к изображению

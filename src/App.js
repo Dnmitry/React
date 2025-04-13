@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// App.js
+import React, { useState, useEffect } from "react";
 import data from "./data.json";
 import ThemesPage from "./components/ThemesPage";
 import SubthemesPage from "./components/SubthemesPage";
@@ -8,71 +9,64 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState("themes");
   const [selectedThemeId, setSelectedThemeId] = useState(null);
   const [selectedSubthemeId, setSelectedSubthemeId] = useState(null);
-  const [themes, setThemes] = useState(data.themes);
-  const [subthemes, setSubthemes] = useState(data.subthemes);
+  const [themes, setThemes] = useState(
+    JSON.parse(localStorage.getItem("themes")) || data.themes
+  );
+  const [subthemes, setSubthemes] = useState(
+    JSON.parse(localStorage.getItem("subthemes")) || data.subthemes
+  );
+  const [contents, setContents] = useState(
+    JSON.parse(localStorage.getItem("contents")) || data.contents
+  );
+
+  useEffect(() => {
+    localStorage.setItem("themes", JSON.stringify(themes));
+    localStorage.setItem("subthemes", JSON.stringify(subthemes));
+    localStorage.setItem("contents", JSON.stringify(contents));
+  }, [themes, subthemes, contents]);
 
   const handleThemeSelect = (themeId) => {
-    if (typeof themeId !== "number") {
-      console.error("Неправильный тип идентификатора темы");
-      return;
+    if (themes.find((theme) => theme.id === themeId)) {
+      setSelectedThemeId(themeId);
+      setCurrentPage("subthemes");
+    } else {
+      alert("Тема не найдена");
     }
-    setSelectedThemeId(themeId);
-    setCurrentPage("subthemes");
   };
 
   const handleSubthemeSelect = (subthemeId) => {
-    if (typeof subthemeId !== "number") {
-      console.error("Неправильный тип идентификатора подтемы");
-      return;
+    if (subthemes.find((subtheme) => subtheme.id === subthemeId)) {
+      setSelectedSubthemeId(subthemeId);
+      setCurrentPage("content");
+    } else {
+      alert("Подтема не найдена");
     }
-    setSelectedSubthemeId(subthemeId);
-    setCurrentPage("content");
   };
 
   const handleBackToThemes = () => {
-    setCurrentPage("themes");
-    setSelectedThemeId(null);
-    setSelectedSubthemeId(null);
+    if (currentPage === "subthemes") {
+      setCurrentPage("themes");
+      setSelectedSubthemeId(null); // Сбрасываем выбранную подтему
+    }
   };
 
   const handleBackToSubthemes = () => {
-    setCurrentPage("subthemes");
-    setSelectedSubthemeId(null);
+    if (currentPage === "content") {
+      setCurrentPage("subthemes");
+      setSelectedSubthemeId(null); // Сбрасываем выбранную подтему
+    }
   };
 
   const handleAddTheme = (newTheme) => {
-    if (typeof newTheme !== "object" || Object.keys(newTheme).length === 0) {
-      console.error("Неправильный тип или пустой объект темы");
-      return;
-    }
-    if (themes.find((theme) => theme.id === newTheme.id)) {
-      console.error("Тема с таким идентификатором уже существует");
-      return;
-    }
-    try {
+    if (!themes.find((theme) => theme.title === newTheme.title)) {
       setThemes((prevThemes) => [...prevThemes, newTheme]);
-    } catch (error) {
-      console.error("Ошибка при добавлении темы", error);
+    } else {
+      alert("Тема с таким названием уже существует");
     }
   };
 
   const handleAddSubtheme = (newSubtheme) => {
-    if (
-      typeof newSubtheme !== "object" ||
-      Object.keys(newSubtheme).length === 0
-    ) {
-      console.error("Неправильный тип или пустой объект подтемы");
-      return;
-    }
-    if (!selectedThemeId) {
-      console.error("Не выбрана тема");
-      return;
-    }
-    if (subthemes.find((subtheme) => subtheme.id === newSubtheme.id)) {
-      console.error("Подтема с таким идентификатором уже существует");
-      return;
-    }
-    try {
+    if (!subthemes.find((subtheme) => subtheme.title === newSubtheme.title)) {
       const newSubthemeWithThemeId = {
         ...newSubtheme,
         themeId: selectedThemeId,
@@ -81,26 +75,53 @@ const App = () => {
         ...prevSubthemes,
         newSubthemeWithThemeId,
       ]);
-    } catch (error) {
-      console.error("Ошибка при добавлении подтемы", error);
+    } else {
+      alert("Подтема с таким названием уже существует");
+    }
+  };
+
+  const handleAddContent = (newContent) => {
+    if (!contents.find((content) => content.title === newContent.title)) {
+      const newContentWithSubthemeId = {
+        ...newContent,
+        subthemeId: selectedSubthemeId,
+      };
+      setContents((prevContents) => [
+        ...prevContents,
+        newContentWithSubthemeId,
+      ]);
+    } else {
+      alert("Контент с таким названием уже существует");
+    }
+  };
+
+  const handleDeleteTheme = (id) => {
+    const themeToDelete = themes.find((theme) => theme.id === id);
+    if (themeToDelete) {
+      const newThemes = themes.filter((theme) => theme.id !== id);
+      setThemes(newThemes);
+    } else {
+      alert("Тема не найдена");
     }
   };
 
   const handleDeleteSubtheme = (id) => {
-    if (typeof id !== "number") {
-      console.error("Неправильный тип идентификатора подтемы");
-      return;
-    }
-    const subtheme = subthemes.find((subtheme) => subtheme.id === id);
-    if (!subtheme) {
-      console.error("Подтема не найдена");
-      return;
-    }
-    try {
+    const subthemeToDelete = subthemes.find((subtheme) => subtheme.id === id);
+    if (subthemeToDelete) {
       const newSubthemes = subthemes.filter((subtheme) => subtheme.id !== id);
       setSubthemes(newSubthemes);
-    } catch (error) {
-      console.error("Ошибка при удалении подтемы", error);
+    } else {
+      alert("Подтема не найдена");
+    }
+  };
+
+  const handleDeleteContent = (id) => {
+    const contentToDelete = contents.find((content) => content.id === id);
+    if (contentToDelete) {
+      const newContents = contents.filter((content) => content.id !== id);
+      setContents(newContents);
+    } else {
+      alert("Контент не найден");
     }
   };
 
@@ -111,6 +132,7 @@ const App = () => {
           themes={themes}
           onSelect={handleThemeSelect}
           onAddTheme={handleAddTheme}
+          onDeleteTheme={handleDeleteTheme}
         />
       )}
       {currentPage === "subthemes" && (
@@ -126,6 +148,8 @@ const App = () => {
         <ContentPage
           subthemeId={selectedSubthemeId}
           onBack={handleBackToSubthemes}
+          onAddContent={handleAddContent}
+          onDeleteContent={handleDeleteContent}
         />
       )}
     </div>
